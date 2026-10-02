@@ -1,0 +1,126 @@
+---
+import LanguageSwitch from './LanguageSwitch.astro';
+import NavItem from './NavItem.astro';
+import { navItems } from '../data/nav';
+import closeIcon from '../assets/icons/close.svg';
+---
+
+<dialog class="menu" id="menu" aria-label="Меню">
+  <div class="container top">
+    <button class="close" type="button" data-menu-close aria-label="Закрыть меню">
+      <img src={closeIcon.src} alt="" width="15" height="15" />
+    </button>
+    <nav>
+      <ul class="list">
+        {
+          navItems.map((item) => (
+            <li>
+              <NavItem href={`/#${item.id}`} data-nav={item.id}>
+                {item.label}
+              </NavItem>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+  <div class="bottom">
+    <div class="container languages">
+      <LanguageSwitch />
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const menu = document.querySelector<HTMLDialogElement>('#menu');
+
+  if (menu) {
+    document.querySelectorAll('[data-menu-open]').forEach((button) => {
+      button.addEventListener('click', () => menu.showModal());
+    });
+
+    menu.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      // A click on the dialog element itself lands on the backdrop.
+      if (target === menu || target.closest('[data-menu-close], [data-nav]')) {
+        menu.close();
+      }
+    });
+
+    // Highlight the section that currently crosses the middle of the viewport.
+    const links = menu.querySelectorAll<HTMLElement>('[data-nav]');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          links.forEach((link) => {
+            if (link.dataset.nav === entry.target.id) {
+              link.setAttribute('aria-current', 'true');
+            } else {
+              link.removeAttribute('aria-current');
+            }
+          });
+        });
+      },
+      { rootMargin: '-50% 0px -50% 0px' },
+    );
+
+    links.forEach((link) => {
+      const section = document.getElementById(link.dataset.nav!);
+      if (section) observer.observe(section);
+    });
+  }
+</script>
+
+<style>
+  .menu {
+    top: 0;
+    width: 100%;
+    max-width: none;
+    max-height: 100dvh;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--color-white);
+    color: var(--color-black);
+  }
+
+  .menu::backdrop {
+    background: rgb(0 0 0 / 0.4);
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    padding-top: 15px;
+    padding-bottom: 50px;
+  }
+
+  .close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    width: 28px;
+    height: 28px;
+    border-radius: 7.778px;
+    background: var(--color-violet);
+  }
+
+  .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .bottom {
+    padding-block: 16px;
+    background: var(--color-violet);
+  }
+
+  .languages {
+    display: flex;
+    justify-content: flex-end;
+  }
+</style>

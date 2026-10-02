@@ -1,0 +1,77 @@
+---
+import behance from '../assets/icons/behance.png';
+import linkedin from '../assets/icons/linkedin.png';
+import telegram from '../assets/icons/telegram.png';
+
+interface Props {
+  network: 'behance' | 'linkedin' | 'telegram';
+  href: string;
+}
+
+const { network, href } = Astro.props;
+
+const icons = {
+  behance: { src: behance.src, label: 'Behance' },
+  linkedin: { src: linkedin.src, label: 'LinkedIn' },
+  telegram: { src: telegram.src, label: 'Telegram' },
+};
+const icon = icons[network];
+---
+
+<a class="social-link" href={href} target="_blank" rel="noopener noreferrer" aria-label={icon.label}>
+  <span class:list={['icon', network]}>
+    <img src={icon.src} alt="" />
+  </span>
+</a>
+
+<style>
+  .social-link {
+    position: relative;
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    background: url('../assets/icons/social-bg.svg') center / 100% 100% no-repeat;
+  }
+
+  .social-link:active {
+    background-image: url('../assets/icons/social-bg-pressed.svg');
+  }
+
+  /* 24×20 icon slot, offset from centre as in the Figma component. */
+  .icon {
+    position: absolute;
+    top: calc(50% + 1px);
+    left: calc(50% - 1px);
+    width: 24px;
+    height: 20px;
+    overflow: hidden;
+    translate: -50% -50%;
+  }
+
+  .icon img {
+    position: absolute;
+    max-width: none;
+  }
+
+  /* Per-icon crops are taken from the Figma image fills. */
+  .behance img {
+    top: 12.5%;
+    left: 0.38%;
+    width: 99.62%;
+    height: 75.14%;
+  }
+
+  .linkedin img {
+    top: 2.28%;
+    left: 17.19%;
+    width: 82.29%;
+    height: 93.96%;
+  }
+
+  .telegram img {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

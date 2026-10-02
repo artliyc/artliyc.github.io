@@ -1,0 +1,33 @@
+---
+// Black pill used for menu links and for the "Меню" trigger in the header.
+// Renders a link when href is given, otherwise a button.
+interface Props {
+  href?: string;
+  [attr: string]: unknown;
+}
+
+const { href, ...attrs } = Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag class="nav-item button-1" href={href} type={href ? undefined : 'button'} {...attrs}>
+  <span class="trim"><slot /></span>
+</Tag>
+
+<style>
+  .nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    border-radius: var(--radius-sm);
+    background: var(--color-black);
+    color: var(--color-white);
+    white-space: nowrap;
+  }
+
+  .nav-item[aria-current] {
+    background: var(--color-yellow);
+    color: var(--color-black);
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+import NavItem from './NavItem.astro';
+import SocialLink from './SocialLink.astro';
+import { socials } from '../data/socials';
+---
+
+<header class="header">
+  <div class="container bar">
+    <div class="socials">
+      {socials.map((social) => <SocialLink network={social.network} href={social.href} />)}
+    </div>
+    <div class="menu-button">
+      <NavItem data-menu-open aria-haspopup="dialog" aria-controls="menu">Меню</NavItem>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 15px 0 14px;
+    background: var(--color-violet);
+  }
+
+  .bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .socials {
+    display: flex;
+    gap: 12px;
+  }
+
+  .menu-button {
+    flex: 0 1 180px;
+  }
+
+  .menu-button :global(.nav-item) {
+    width: 100%;
+  }
+</style>

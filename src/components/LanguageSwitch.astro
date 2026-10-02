@@ -1,0 +1,44 @@
+---
+import { languages } from '../data/nav';
+
+const current = Astro.currentLocale ?? 'ru';
+---
+
+<div class="language-switch">
+  {
+    languages.map((language) => (
+      <a
+        class="option button-1"
+        href={language.href}
+        hreflang={language.locale}
+        aria-current={language.locale === current ? 'true' : undefined}
+      >
+        <span class="trim">{language.label}</span>
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .language-switch {
+    display: flex;
+    gap: 9px;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--color-black);
+    border-radius: var(--radius-md);
+    background: var(--color-black);
+    color: var(--color-yellow);
+  }
+
+  .option[aria-current] {
+    background: none;
+    color: var(--color-black);
+  }
+</style>
