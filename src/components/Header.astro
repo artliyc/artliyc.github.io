@@ -5,7 +5,7 @@ import { socials } from '../data/socials';
 ---
 
 <header class="header">
-  <div class="container bar">
+  <div class="bar">
     <div class="socials">
       {socials.map((social) => <SocialLink network={social.network} href={social.href} />)}
     </div>
@@ -29,6 +29,7 @@ import { socials } from '../data/socials';
     align-items: flex-start;
     justify-content: space-between;
     gap: 12px;
+    padding-inline: var(--gutter);
   }
 
   .socials {
