@@ -20,7 +20,7 @@ export const aliensZombiesRobots: Project = {
 
   company: 'AKPublish ltd',
   meta: {
-    tags: 'game interface, mobile, ux/ui design, b2c',
+    tags: 'game interface, mobile, ux/ui design, B2C',
     about: 'Мобильная игра Idle Tower Defense, находящаяся на этапе открытого бета-тестирования.',
   },
   sections: [

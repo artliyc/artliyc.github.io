@@ -30,7 +30,7 @@ export const farManor: Project = {
 
   company: 'Indie developer',
   meta: {
-    tags: 'game interface, web, ux/ui design, b2c',
+    tags: 'game interface, web, ux/ui design, B2C',
     about:
       'Игра инди-разработчика, находящаяся на https://itch.io/ в открытом доступе. Разработка игры продолжается.',
   },

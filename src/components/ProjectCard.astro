@@ -11,6 +11,8 @@ const { crop } = project;
 const cropStyle = crop
   ? `top: ${crop.top}%; left: ${crop.left}%; width: ${crop.width}%; height: ${crop.height}%`
   : undefined;
+// Rendered width of the image in px at the 402px frame (the slot is 330px wide).
+const displayWidth = Math.round((330 * (crop?.width ?? 100)) / 100);
 ---
 
 <a class="project-card" href={`/projects/${project.slug}/`}>
@@ -18,7 +20,10 @@ const cropStyle = crop
     <Image
       src={project.thumbnail}
       alt=""
-      width={Math.round((660 * (crop?.width ?? 100)) / 100)}
+      width={displayWidth * 2}
+      widths={[displayWidth * 2, displayWidth * 3]}
+      sizes={`${displayWidth}px`}
+      quality={92}
       style={cropStyle}
     />
   </div>

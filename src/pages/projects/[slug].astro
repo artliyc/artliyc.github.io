@@ -19,6 +19,8 @@ const title = project.pageTitle ?? project.title;
 
 <Base title={`${title} — Ирина, UX/UI дизайнер`} description={project.meta.about} activeNav="projects">
   <article class="project container">
+    <a class="back h6 trim" href="/#projects">← Назад</a>
+
     <header class="heading">
       <h1 class="h1 trim">{title}</h1>
       {project.company && <p class="company h3 trim">{project.company}</p>}
@@ -56,11 +58,11 @@ const title = project.pageTitle ?? project.title;
 
       {
         project.link && (
-          <div class="project-link">
+          <div class:list={['project-link', { 'with-qr': project.link.qr }]}>
             <a class="h6 trim" href={project.link.href} target="_blank" rel="noopener noreferrer">
               {project.link.label}
             </a>
-            {project.link.qr && <Image src={project.link.qr} alt="QR-код" width={448} />}
+            {project.link.qr && <Image src={project.link.qr} alt="QR-код" width={672} quality={92} />}
           </div>
         )
       }
@@ -124,17 +126,31 @@ const title = project.pageTitle ?? project.title;
     margin-top: 15px;
   }
 
+  .back {
+    align-self: flex-start;
+    color: var(--color-violet);
+  }
+
   .project-link {
     display: flex;
     flex-direction: column;
     gap: 8px;
+  }
+
+  .project-link a {
+    color: var(--color-violet);
+    text-decoration: underline;
+    text-underline-position: from-font;
+  }
+
+  .project-link.with-qr {
     width: 224px;
     max-width: 100%;
     text-align: center;
   }
 
-  .project-link a {
-    color: var(--color-violet);
+  .project-link.with-qr a {
+    text-decoration: none;
   }
 
   .project-link img {

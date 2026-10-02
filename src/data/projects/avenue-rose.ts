@@ -17,7 +17,7 @@ export const avenueRose: Project = {
 
   company: 'DL Games',
   meta: {
-    tags: 'game interface, ux/ui design, b2c',
+    tags: 'game interface, ux/ui design, B2C',
     about:
       'Концептуальный проект, разработанный для компании, специализирующейся на сезонных игровых активациях для брендов.',
   },

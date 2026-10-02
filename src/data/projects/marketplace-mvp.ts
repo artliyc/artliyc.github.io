@@ -23,12 +23,12 @@ export const marketplaceMvp: Project = {
     'Я спроектировала приложение с нуля в рамках учебного проекта. По итогу разработаны более 60+ экранов продукта в светлой и тёмной темах (всего 120+ экранов).',
     'Работа велась по полному циклу дизайн-процесса, близкому к реальной продуктовой разработке: от аналитики и постановки задач до финального UI.',
   ],
-  tags: ['Mobile App', 'B2B', 'UX/UI design'],
+  tags: ['Mobile App', 'B2C', 'UX/UI design'],
   thumbnail,
 
   pageTitle: 'Маркетплейс MVP',
   meta: {
-    tags: 'mobile app, ux/ui design, b2c',
+    tags: 'mobile app, ux/ui design, B2C',
     about: 'MVP мобильного приложения для маркетплейса одежды (учебный проект)',
   },
   sections: [
@@ -97,4 +97,8 @@ export const marketplaceMvp: Project = {
       },
     ],
   ],
+  link: {
+    label: 'Ссылка на проект в Figma',
+    href: 'https://www.figma.com/design/sniHkreM9UmfTMdzRneWhA/Irina-Kniazeva-%7C-Mobile-App?node-id=2803-18183&t=FefLi5a3VfazrQBH-1',
+  },
 };

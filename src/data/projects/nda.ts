@@ -13,7 +13,7 @@ export const nda: Project = {
 
   company: 'Indie studio',
   meta: {
-    tags: 'game interface, web, mobile, ux/ui design, b2c',
+    tags: 'game interface, web, mobile, ux/ui design, B2C',
     about: 'Визуальная новелла инди-разработчика в жанре интерактивных историй.',
   },
   sections: [

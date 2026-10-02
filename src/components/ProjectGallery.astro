@@ -20,7 +20,10 @@ const { items } = Astro.props;
             <Image
               src={image.src}
               alt=""
-              width={Math.round(image.width * 2)}
+              width={image.width * 2}
+              widths={[image.width * 2, image.width * 3]}
+              sizes={`${image.width}px`}
+              quality={92}
               style={`max-width: ${image.width}px; aspect-ratio: ${image.width} / ${image.height}; object-fit: ${image.fit ?? 'cover'}`}
             />
           ))}

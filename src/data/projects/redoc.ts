@@ -16,7 +16,7 @@ export const redoc: Project = {
 
   company: 'OOO «Интегрикс»',
   meta: {
-    tags: 'saas, ux/ui design, gamification, b2b',
+    tags: 'saas, ux/ui design, gamification, B2B',
     about:
       'Универсальная платформа для автоматизации бизнес-процессов, внедрённая в МФЦ нескольких российских регионов.',
   },
@@ -48,7 +48,7 @@ export const redoc: Project = {
   gallery: [
     [
       {
-        caption: 'Скриншоты из игры',
+        caption: 'Экраны',
         layout: 'list',
         images: [screen01, screen02].map((src) => ({ src, width: 370, height: 199 })),
       },

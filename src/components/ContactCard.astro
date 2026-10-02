@@ -30,7 +30,7 @@ const external = contact.href.startsWith('http');
   {
     contact.qr && (
       <span class="qr">
-        <Image src={contact.qr.src} alt="QR-код" width={390} style={`object-fit: ${contact.qr.fit}`} />
+        <Image src={contact.qr.src} alt="QR-код" width={585} quality={92} style={`object-fit: ${contact.qr.fit}`} />
       </span>
     )
   }
