@@ -51,6 +51,7 @@ export const redoc: Project = {
         caption: 'Экраны',
         layout: 'list',
         images: [screen01, screen02].map((src) => ({ src, width: 370, height: 199 })),
+        desktop: { width: 1387, height: 736, gap: 25, column: true },
       },
     ],
   ],

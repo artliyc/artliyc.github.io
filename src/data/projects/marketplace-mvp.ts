@@ -60,16 +60,23 @@ export const marketplaceMvp: Project = {
   ],
   gallery: [
     [
-      { caption: 'User Flow', layout: 'single', images: [{ src: userFlow, width: 369, height: 204 }] },
+      {
+        caption: 'User Flow',
+        layout: 'single',
+        images: [{ src: userFlow, width: 369, height: 204 }],
+        desktop: { width: 866, height: 479 },
+      },
       {
         caption: 'Дизайн-система | Variables',
         layout: 'single',
         images: [{ src: variables, width: 370, height: 246 }],
+        desktop: { width: 757, height: 402 },
       },
       {
         caption: 'Дизайн-система | Компоненты',
         layout: 'single',
         images: [{ src: components, width: 370, height: 175 }],
+        desktop: { width: 757, height: 357 },
       },
       {
         caption: 'Вайрфреймы',
@@ -80,6 +87,7 @@ export const marketplaceMvp: Project = {
           height: 368,
           fit: 'contain' as const,
         })),
+        desktop: { width: 176.5, height: 382, gap: 20 },
       },
       {
         caption: 'Визуальная концепция',
@@ -94,6 +102,7 @@ export const marketplaceMvp: Project = {
           concept07,
           concept08,
         ].map((src) => ({ src, width: 179, height: 368 })),
+        desktop: { width: 187, height: 382, gap: 15 },
       },
     ],
   ],

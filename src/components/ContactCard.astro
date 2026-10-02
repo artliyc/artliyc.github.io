@@ -52,6 +52,17 @@ const external = contact.href.startsWith('http');
     display: block;
   }
 
+  /* Hover: the card turns black, the colour of the other dark controls. */
+  .contact-card {
+    transition: background-color 0.3s ease;
+  }
+
+  @media (hover: hover) {
+    .contact-card:hover {
+      background: var(--color-black);
+    }
+  }
+
   .with-qr {
     gap: 10px;
     height: 260px;

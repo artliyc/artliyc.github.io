@@ -3,17 +3,24 @@ import { Image } from 'astro:assets';
 import type { GalleryItem } from '../data/projects/types';
 
 interface Props {
-  /** One gallery group: captioned items separated by 16px. */
+  /** One gallery group: captioned items separated by 16px (50px apart in a row on desktop). */
   items: GalleryItem[];
 }
 
 const { items } = Astro.props;
+
+// Rendered widths: 2x/3x of the mobile slot plus 1x/2x of the desktop slot (1920 frame).
+const widthsFor = (mobile: number, desktop: number) =>
+  [...new Set([mobile * 2, mobile * 3, desktop, desktop * 2].map(Math.round))].sort((a, b) => a - b);
 ---
 
 <div class="gallery">
   {
     items.map((item) => (
-      <figure class:list={['item', item.layout]}>
+      <figure
+        class:list={['item', item.layout, { column: item.desktop.column }]}
+        style={`--dw: ${item.desktop.width}; --dh: ${item.desktop.height}; --dgap: ${item.desktop.gap ?? 0}`}
+      >
         {item.caption && <figcaption class="h6 trim">{item.caption}</figcaption>}
         <div class="images">
           {item.images.map((image) => (
@@ -21,10 +28,10 @@ const { items } = Astro.props;
               src={image.src}
               alt=""
               width={image.width * 2}
-              widths={[image.width * 2, image.width * 3]}
-              sizes={`${image.width}px`}
+              widths={widthsFor(image.width, item.desktop.width)}
+              sizes={`(min-width: 1024px) ${((item.desktop.width / 1920) * 100).toFixed(2)}vw, ${image.width}px`}
               quality={92}
-              style={`max-width: ${image.width}px; aspect-ratio: ${image.width} / ${image.height}; object-fit: ${image.fit ?? 'cover'}`}
+              style={`--mw: ${image.width}; --mh: ${image.height}; object-fit: ${image.fit ?? 'cover'}`}
             />
           ))}
         </div>
@@ -69,6 +76,45 @@ const { items } = Astro.props;
 
   .images img {
     width: 100%;
+    max-width: calc(var(--mw) * 1px);
     height: auto;
+    aspect-ratio: var(--mw) / var(--mh);
+  }
+
+  /* Desktop: items of a group sit side by side and wrap; images line up in a row. */
+  @media (min-width: 1024px) {
+    .gallery {
+      flex-flow: row wrap;
+      gap: calc(50 * var(--u));
+    }
+
+    .item,
+    .item.list {
+      gap: calc(16 * var(--u));
+    }
+
+    figcaption {
+      font-size: calc(19 * var(--u));
+    }
+
+    .images,
+    .list .images,
+    .grid .images {
+      display: flex;
+      flex-direction: row;
+      gap: calc(var(--dgap) * var(--u));
+    }
+
+    .column .images {
+      flex-direction: column;
+    }
+
+    .images img {
+      width: calc(var(--dw) * var(--u));
+      max-width: none;
+      aspect-ratio: var(--dw) / var(--dh);
+      /* Where the desktop slot is wider than the source (Variables), keep its top. */
+      object-position: top;
+    }
   }
 </style>

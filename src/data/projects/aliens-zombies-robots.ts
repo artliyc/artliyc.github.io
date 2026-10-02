@@ -57,6 +57,7 @@ export const aliensZombiesRobots: Project = {
         caption: 'Скриншоты из игры',
         layout: 'list',
         images: [screen01, screen02, screen03, screen04, screen05].map((src) => ({ src, width: 259, height: 532 })),
+        desktop: { width: 259, height: 532, gap: 25 },
       },
     ],
   ],

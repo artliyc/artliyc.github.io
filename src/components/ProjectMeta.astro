@@ -50,4 +50,31 @@ const { tags, about } = Astro.props;
     min-width: 0;
     color: rgb(255 255 255 / 0.6);
   }
+
+  @media (min-width: 1024px) {
+    .project-meta {
+      flex-shrink: 0;
+      width: calc(513 * var(--u));
+      padding: calc(25 * var(--u));
+      border-radius: calc(20 * var(--u));
+    }
+
+    .row,
+    .row + .row {
+      gap: calc(10 * var(--u));
+    }
+
+    /* Desktop/Headline 6 */
+    dt {
+      font: 600 calc(19 * var(--u)) / 1.2 var(--font-text);
+      letter-spacing: -0.03em;
+    }
+
+    /* Desktop/Text 3 */
+    dd {
+      font-size: calc(20 * var(--u));
+      line-height: calc(24 * var(--u));
+      letter-spacing: -0.03em;
+    }
+  }
 </style>

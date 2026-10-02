@@ -57,6 +57,7 @@ export const avenueRose: Project = {
         caption: 'Экраны',
         layout: 'list',
         images: [screen01, screen02, screen03].map((src) => ({ src, width: 289, height: 628 })),
+        desktop: { width: 289, height: 628, gap: 25 },
       },
     ],
   ],

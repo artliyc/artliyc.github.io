@@ -164,4 +164,15 @@ const displayWidth = Math.round((330 * (crop?.width ?? 100)) / 100);
       text-box: normal;
     }
   }
+
+  /* Hover: a violet outline in the brand colour fades in around the card. */
+  .project-card {
+    transition: box-shadow 0.3s ease;
+  }
+
+  @media (hover: hover) {
+    .project-card:hover {
+      box-shadow: inset 0 0 0 3px var(--color-violet);
+    }
+  }
 </style>

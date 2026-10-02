@@ -9,11 +9,17 @@ import after03 from '../../assets/images/projects/far-manor/03-after.webp';
 import type { GalleryItem, Project } from './types';
 
 const comparison = (before: ImageMetadata, after: ImageMetadata): GalleryItem[] => [
-  { caption: 'Предыдущий дизайн', layout: 'single', images: [{ src: before, width: 370, height: 206 }] },
+  {
+    caption: 'Предыдущий дизайн',
+    layout: 'single',
+    images: [{ src: before, width: 370, height: 206 }],
+    desktop: { width: 780, height: 443 },
+  },
   {
     caption: 'Скриншот нового реализованного интерфейса',
     layout: 'single',
     images: [{ src: after, width: 370, height: 209 }],
+    desktop: { width: 780, height: 443 },
   },
 ];
 

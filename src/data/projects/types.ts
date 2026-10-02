@@ -24,6 +24,11 @@ export interface GalleryItem {
    */
   layout: 'list' | 'single' | 'grid';
   images: GalleryImage[];
+  /**
+   * Desktop: size of each image in px of the 1920 frame and the gap between
+   * them. Images line up in a row unless `column` is set.
+   */
+  desktop: { width: number; height: number; gap?: number; column?: boolean };
 }
 
 export interface ProjectLink {
