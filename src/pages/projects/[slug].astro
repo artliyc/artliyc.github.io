@@ -138,8 +138,16 @@ const title = project.pageTitle ?? project.title;
     margin-top: 15px;
   }
 
+  /*
+   * Sits above the title: the title's tall line box otherwise covers the link
+   * on desktop. Padding enlarges the click area, negative margin keeps layout.
+   */
   .back {
+    position: relative;
+    z-index: 1;
     align-self: flex-start;
+    margin: -10px -12px;
+    padding: 10px 12px;
     color: var(--color-violet);
   }
 
@@ -179,7 +187,7 @@ const title = project.pageTitle ?? project.title;
     }
 
     .back {
-      margin-bottom: calc(-20 * var(--u));
+      margin-bottom: calc(-20 * var(--u) - 10px);
       font-size: calc(19 * var(--u));
     }
 
