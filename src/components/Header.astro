@@ -132,12 +132,19 @@ const { active } = Astro.props;
       white-space: nowrap;
       transition:
         background-color 0.3s ease,
-        color 0.3s ease;
+        color 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
     .nav-link[aria-current] {
       background: var(--color-yellow);
       color: var(--color-black);
+    }
+
+    @media (hover: hover) {
+      .nav-link:hover {
+        box-shadow: inset 0 0 0 calc(3 * var(--u)) var(--color-yellow);
+      }
     }
 
     .language {
