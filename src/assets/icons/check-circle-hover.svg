@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="75" height="75" viewBox="0 0 75 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Icon/CheckCircle" clip-path="url(#clip0_0_9)">
+<path id="Glyph" d="M37.5 0C16.7893 0 0 16.7893 0 37.5C0 58.2107 16.7893 75 37.5 75C58.2107 75 75 58.2107 75 37.5C75 16.7893 58.2107 0 37.5 0ZM53.5904 17.5644L61.3814 25.3555L37.0468 49.6949L29.3014 57.4356L21.5103 49.6445L13.6184 41.748L21.3592 34.0072L29.2511 41.9036L53.5904 17.5644Z" fill="black"/>
+</g>
+<defs>
+<clipPath id="clip0_0_9">
+<rect width="75" height="75" fill="white"/>
+</clipPath>
+</defs>
+</svg>

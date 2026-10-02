@@ -25,7 +25,7 @@ const { title, description, activeNav } = Astro.props;
     {description && <meta name="description" content={description} />}
   </head>
   <body>
-    <Header />
+    <Header active={activeNav} />
     <Menu active={activeNav} />
     <main>
       <slot />

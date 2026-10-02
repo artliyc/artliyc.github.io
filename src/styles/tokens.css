@@ -19,6 +19,18 @@
   --page-width: 402px;
   --gutter: 16px;
   --header-height: 75px;
+
+  /*
+   * Desktop unit: one pixel of the 1920px Figma frame. Desktop sizes are written
+   * as calc(N * var(--u)) so the whole layout scales with the window width.
+   */
+  --u: calc(100vw / 1920);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-height: calc(134 * var(--u));
+  }
 }
 
 /* Type styles. Figma letter spacing is in percent, so it maps to em. */

@@ -75,6 +75,13 @@ section[id] {
   scroll-margin-top: 36px;
 }
 
+/* Desktop screens carry their own top padding that clears the floating header. */
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 0;
+  }
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

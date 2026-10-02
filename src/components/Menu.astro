@@ -58,7 +58,8 @@ const { active } = Astro.props;
     });
 
     // Highlight the section that currently crosses the middle of the viewport.
-    const links = menu.querySelectorAll<HTMLElement>('[data-nav]');
+    // Covers both this menu and the desktop navigation in the header.
+    const links = document.querySelectorAll<HTMLElement>('[data-nav]');
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -75,8 +76,8 @@ const { active } = Astro.props;
       { rootMargin: '-50% 0px -50% 0px' },
     );
 
-    links.forEach((link) => {
-      const section = document.getElementById(link.dataset.nav!);
+    new Set([...links].map((link) => link.dataset.nav!)).forEach((id) => {
+      const section = document.getElementById(id);
       if (section) observer.observe(section);
     });
   }

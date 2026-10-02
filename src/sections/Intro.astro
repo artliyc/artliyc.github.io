@@ -1,30 +1,40 @@
 ---
 import PlatformButton from '../components/PlatformButton.astro';
+import SocialPill from '../components/SocialPill.astro';
+import { socials } from '../data/socials';
 
 const platforms = [
   { label: 'Mobile Apps', href: '/projects/marketplace-mvp/' },
   { label: 'Games', href: '/#projects' },
   { label: 'Saas', href: '/projects/redoc/' },
 ];
+
+const socialLabels = { behance: 'Behance', linkedin: 'LinkedIn', telegram: 'Telegram' };
 ---
 
 <section class="intro container" id="about">
-  <div class="heading">
-    <h1 class="h1 trim">Приветствую!</h1>
-    <p class="subtitle h2 trim">Меня зовут Ирина</p>
-  </div>
-  <div class="description text-1 trim">
-    <p>
-      Я UX/UI дизайнер, который превращает сложные продукты в понятный и увлекательный пользовательский опыт.
-    </p>
-    <p>
-      Работаю на стыке геймдизайна и продуктового подхода: проектирую интерфейсы для игр, мобильных приложений и
-      SaaS-сервисов, где важны не только удобство, но и вовлеченность.
-    </p>
-    <p>
-      Особое внимание уделяю геймификации — внедряю игровые механики в неигровые продукты, чтобы усиливать интерес,
-      удержание и эмоциональную связь с пользователем.
-    </p>
+  <div class="main">
+    <div class="heading">
+      <h1 class="h1 trim">Приветствую!</h1>
+      <p class="subtitle h2 trim">Меня зовут Ирина</p>
+    </div>
+    <div class="description text-1 trim">
+      <p>
+        Я UX/UI дизайнер, который превращает сложные продукты в понятный и увлекательный пользовательский опыт.
+      </p>
+      <p>
+        Работаю на стыке геймдизайна и продуктового подхода: проектирую интерфейсы для игр, мобильных приложений и
+        SaaS-сервисов, где важны не только удобство, но и вовлеченность.
+      </p>
+      <p>
+        Особое внимание уделяю геймификации — внедряю игровые механики в неигровые продукты, чтобы усиливать интерес,
+        удержание и эмоциональную связь с пользователем.
+      </p>
+    </div>
+    {/* On mobile the social links live in the header instead. */}
+    <div class="socials">
+      {socials.map((social) => <SocialPill href={social.href}>{socialLabels[social.network]}</SocialPill>)}
+    </div>
   </div>
   <ul class="platforms">
     {platforms.map((platform) => <PlatformButton href={platform.href}>{platform.label}</PlatformButton>)}
@@ -32,7 +42,8 @@ const platforms = [
 </section>
 
 <style>
-  .intro {
+  .intro,
+  .main {
     display: flex;
     flex-direction: column;
     gap: 36px;
@@ -53,9 +64,69 @@ const platforms = [
     margin-top: 15px;
   }
 
+  .socials {
+    display: none;
+  }
+
   .platforms {
     display: flex;
     flex-direction: column;
     gap: 12px;
+  }
+
+  /* Desktop: text on the left, violet panel with the platforms on the right. */
+  @media (min-width: 1024px) {
+    .intro {
+      display: grid;
+      grid-template-columns: 1355fr 566fr;
+      gap: 0;
+      max-width: none;
+      min-height: max(100vh, calc(1280 * var(--u)));
+      padding: 0;
+    }
+
+    .main {
+      gap: 0;
+      padding: calc(344 * var(--u)) 0 calc(127 * var(--u)) calc(95 * var(--u));
+    }
+
+    .heading {
+      gap: calc(35 * var(--u));
+    }
+
+    .h1 {
+      font-size: calc(160 * var(--u));
+      white-space: nowrap;
+    }
+
+    .subtitle {
+      font-weight: 700;
+      font-size: calc(80 * var(--u));
+    }
+
+    .description {
+      width: calc(875 * var(--u));
+      margin-top: calc(90 * var(--u));
+      font-size: calc(28 * var(--u));
+      line-height: calc(36 * var(--u));
+      letter-spacing: -0.03em;
+    }
+
+    .description p + p {
+      margin-top: calc(20 * var(--u));
+    }
+
+    .socials {
+      display: flex;
+      gap: calc(30 * var(--u));
+      margin-top: calc(98 * var(--u));
+    }
+
+    .platforms {
+      align-items: center;
+      gap: calc(45 * var(--u));
+      padding-top: calc(330 * var(--u));
+      background: var(--color-violet);
+    }
   }
 </style>

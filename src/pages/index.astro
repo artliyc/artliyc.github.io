@@ -24,4 +24,11 @@ import Testimonials from '../sections/Testimonials.astro';
     gap: 100px;
     padding-block: 36px;
   }
+
+  /* The first desktop screen runs edge to edge under the floating header. */
+  @media (min-width: 1024px) {
+    .page {
+      padding-top: 0;
+    }
+  }
 </style>

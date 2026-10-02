@@ -41,4 +41,27 @@ const current = Astro.currentLocale ?? 'ru';
     background: none;
     color: var(--color-black);
   }
+
+  /* Desktop: one pill split in two halves. */
+  @media (min-width: 1024px) {
+    .language-switch {
+      gap: 0;
+    }
+
+    .option {
+      width: calc(92 * var(--u));
+      height: calc(84 * var(--u));
+      border-radius: 0;
+      font-size: calc(26 * var(--u));
+      letter-spacing: -0.03em;
+    }
+
+    .option:first-child {
+      border-radius: calc(60 * var(--u)) 0 0 calc(60 * var(--u));
+    }
+
+    .option:last-child {
+      border-radius: 0 calc(60 * var(--u)) calc(60 * var(--u)) 0;
+    }
+  }
 </style>

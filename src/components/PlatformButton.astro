@@ -1,6 +1,4 @@
 ---
-import checkCircle from '../assets/icons/check-circle.svg';
-
 interface Props {
   href: string;
 }
@@ -10,8 +8,8 @@ const { href } = Astro.props;
 
 <li>
   <a class="platform-button" href={href}>
-    <img src={checkCircle.src} alt="" width="36" height="36" />
-    <span class="button-1 trim"><slot /></span>
+    <span class="icon"></span>
+    <span class="label button-1 trim"><slot /></span>
   </a>
 </li>
 
@@ -25,5 +23,54 @@ const { href } = Astro.props;
     background: var(--color-black);
     color: var(--color-yellow);
     white-space: nowrap;
+  }
+
+  .icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: url('../assets/icons/check-circle.svg') center / 100% 100% no-repeat;
+  }
+
+  @media (min-width: 1024px) {
+    .platform-button {
+      flex-direction: column;
+      justify-content: center;
+      gap: calc(35 * var(--u));
+      width: calc(289 * var(--u));
+      height: calc(195 * var(--u));
+      padding: calc(11 * var(--u));
+      border-radius: calc(28 * var(--u));
+    }
+
+    .icon {
+      width: calc(75 * var(--u));
+      height: calc(75 * var(--u));
+    }
+
+    .label {
+      font-size: calc(36 * var(--u));
+      letter-spacing: -0.02em;
+    }
+  }
+
+  @media (hover: hover) {
+    .platform-button:hover {
+      background: var(--color-yellow);
+      color: var(--color-black);
+    }
+
+    .platform-button:hover .icon {
+      background-image: url('../assets/icons/check-circle-hover.svg');
+    }
+  }
+
+  .platform-button:active {
+    background: var(--color-white);
+    color: var(--color-black);
+  }
+
+  .platform-button:active .icon {
+    background-image: url('../assets/icons/check-circle-hover.svg');
   }
 </style>

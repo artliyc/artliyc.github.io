@@ -1,7 +1,16 @@
 ---
+import LanguageSwitch from './LanguageSwitch.astro';
 import NavItem from './NavItem.astro';
 import SocialLink from './SocialLink.astro';
+import { navItems } from '../data/nav';
 import { socials } from '../data/socials';
+
+interface Props {
+  /** Navigation item highlighted on pages that have no anchored sections. */
+  active?: string;
+}
+
+const { active } = Astro.props;
 ---
 
 <header class="header">
@@ -11,6 +20,30 @@ import { socials } from '../data/socials';
     </div>
     <div class="menu-button">
       <NavItem data-menu-open aria-haspopup="dialog" aria-controls="menu">Меню</NavItem>
+    </div>
+  </div>
+
+  <div class="desktop">
+    <nav class="main-nav" aria-label="Основная навигация">
+      <ul>
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                class="nav-link"
+                href={`/#${item.id}`}
+                data-nav={item.id}
+                aria-current={item.id === active ? 'true' : undefined}
+              >
+                <span class="trim">{item.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class="language">
+      <LanguageSwitch />
     </div>
   </div>
 </header>
@@ -43,5 +76,72 @@ import { socials } from '../data/socials';
 
   .menu-button :global(.nav-item) {
     width: 100%;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    /* Floats over the page: only the navigation and the switch catch clicks. */
+    .header {
+      position: fixed;
+      inset: 0 0 auto;
+      height: calc(134 * var(--u));
+      padding: 0;
+      background: none;
+      pointer-events: none;
+    }
+
+    .bar {
+      display: none;
+    }
+
+    .desktop {
+      display: block;
+    }
+
+    .main-nav {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      padding: calc(24 * var(--u));
+      border-radius: 0 0 calc(28 * var(--u)) calc(28 * var(--u));
+      background: var(--color-black);
+      translate: -50%;
+      pointer-events: auto;
+    }
+
+    .main-nav ul {
+      display: flex;
+      gap: calc(8 * var(--u));
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: calc(178 * var(--u));
+      height: calc(86 * var(--u));
+      padding-inline: calc(35 * var(--u));
+      border-radius: calc(16.428 * var(--u));
+      color: var(--color-white);
+      font: 700 calc(30 * var(--u)) / 1 var(--font-heading);
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav-link[aria-current] {
+      background: var(--color-yellow);
+      color: var(--color-black);
+    }
+
+    .language {
+      position: absolute;
+      top: calc(25 * var(--u));
+      right: calc(22 * var(--u));
+      pointer-events: auto;
+    }
   }
 </style>
