@@ -23,13 +23,27 @@ const { href } = Astro.props;
     background: var(--color-black);
     color: var(--color-yellow);
     white-space: nowrap;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
   .icon {
+    position: relative;
     flex-shrink: 0;
     width: 36px;
     height: 36px;
     background: url('../assets/icons/check-circle.svg') center / 100% 100% no-repeat;
+  }
+
+  /* Hover/pressed icon sits on top and fades in, so the swap is not abrupt. */
+  .icon::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('../assets/icons/check-circle-hover.svg') center / 100% 100% no-repeat;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
   @media (min-width: 1024px) {
@@ -60,8 +74,8 @@ const { href } = Astro.props;
       color: var(--color-black);
     }
 
-    .platform-button:hover .icon {
-      background-image: url('../assets/icons/check-circle-hover.svg');
+    .platform-button:hover .icon::after {
+      opacity: 1;
     }
   }
 
@@ -70,7 +84,7 @@ const { href } = Astro.props;
     color: var(--color-black);
   }
 
-  .platform-button:active .icon {
-    background-image: url('../assets/icons/check-circle-hover.svg');
+  .platform-button:active .icon::after {
+    opacity: 1;
   }
 </style>

@@ -23,6 +23,9 @@ const { href } = Astro.props;
     border-radius: calc(60 * var(--u));
     background: var(--color-black);
     color: var(--color-white);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
   .label {
@@ -32,10 +35,21 @@ const { href } = Astro.props;
   }
 
   .arrow {
+    position: relative;
     flex-shrink: 0;
     width: calc(60 * var(--u));
     height: calc(60 * var(--u));
     background: url('../assets/icons/arrow.svg') center / 100% 100% no-repeat;
+  }
+
+  /* Hover/pressed icon sits on top and fades in, so the swap is not abrupt. */
+  .arrow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('../assets/icons/arrow-hover.svg') center / 100% 100% no-repeat;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
   @media (hover: hover) {
@@ -44,8 +58,8 @@ const { href } = Astro.props;
       color: var(--color-black);
     }
 
-    .social-pill:hover .arrow {
-      background-image: url('../assets/icons/arrow-hover.svg');
+    .social-pill:hover .arrow::after {
+      opacity: 1;
     }
   }
 
@@ -54,7 +68,8 @@ const { href } = Astro.props;
     color: var(--color-black);
   }
 
-  .social-pill:active .arrow {
+  .social-pill:active .arrow::after {
     background-image: url('../assets/icons/arrow-pressed.svg');
+    opacity: 1;
   }
 </style>

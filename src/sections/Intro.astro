@@ -81,13 +81,25 @@ const socialLabels = { behance: 'Behance', linkedin: 'LinkedIn', telegram: 'Tele
       grid-template-columns: 1355fr 566fr;
       gap: 0;
       max-width: none;
-      min-height: max(100vh, calc(1280 * var(--u)));
+      min-height: 100vh;
       padding: 0;
     }
 
+    /*
+     * The Figma frame is 1280px tall, real windows are shorter. Both columns use
+     * a unit that also shrinks with the window height, so the social links
+     * (bottom edge at 1153 in the frame) stay on screen with some room below.
+     * Everything inside inherits the smaller unit.
+     */
+    .main,
+    .platforms {
+      --u: min(100vw / 1920, 100vh / 1225);
+    }
+
+    /* The left edge stays on the page grid, whatever the vertical scale. */
     .main {
       gap: 0;
-      padding: calc(344 * var(--u)) 0 calc(127 * var(--u)) calc(95 * var(--u));
+      padding: calc(344 * var(--u)) 0 calc(72 * var(--u)) calc(95 * 100vw / 1920);
     }
 
     .heading {
