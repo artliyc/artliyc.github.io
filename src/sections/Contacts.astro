@@ -1,0 +1,35 @@
+---
+import ContactCard from '../components/ContactCard.astro';
+import { contacts } from '../data/contacts';
+---
+
+<section class="contacts container" id="contacts">
+  <h2 class="h1 trim">Всегда на связи</h2>
+  <ul class="list">
+    {
+      contacts.map((contact) => (
+        <li>
+          <ContactCard contact={contact} />
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .contacts h2 {
+    white-space: nowrap;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+</style>

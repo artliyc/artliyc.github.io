@@ -1,0 +1,77 @@
+---
+import quote from '../assets/icons/quote.svg';
+import type { Testimonial } from '../data/testimonials';
+
+interface Props {
+  testimonial: Testimonial;
+}
+
+const { testimonial } = Astro.props;
+---
+
+<figure class="testimonial-card">
+  <figcaption class="author">
+    <span class="quote-icon">
+      <img src={quote.src} alt="" width="39" height="33" />
+    </span>
+    <div class="info">
+      <p class="h4">{testimonial.name}</p>
+      <div class="details text-2">
+        <p class="trim">{testimonial.role}</p>
+        <p class="trim">{testimonial.company}</p>
+      </div>
+    </div>
+  </figcaption>
+  <blockquote class="text text-1 trim">
+    {testimonial.text.map((paragraph) => <p>{paragraph}</p>)}
+  </blockquote>
+</figure>
+
+<style>
+  .testimonial-card {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    background: var(--color-light-gray);
+  }
+
+  .author {
+    display: flex;
+    gap: 10px;
+  }
+
+  .quote-icon {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 67px;
+    height: 61px;
+    border-radius: var(--radius-sm);
+    background: var(--color-violet);
+  }
+
+  .quote-icon img {
+    width: 39.19px;
+    height: 33.23px;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: var(--color-gray);
+  }
+
+  .text p + p {
+    margin-top: 15px;
+  }
+</style>

@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import type { Contact } from '../data/contacts';
+
+interface Props {
+  contact: Contact;
+}
+
+const { contact } = Astro.props;
+const external = contact.href.startsWith('http');
+---
+
+<a
+  class:list={['contact-card', { 'with-qr': contact.qr }]}
+  href={contact.href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+>
+  <span class="h3 trim">
+    {
+      contact.title.map((line, index) => (
+        <>
+          {index > 0 && <br />}
+          {line}
+        </>
+      ))
+    }
+  </span>
+  {contact.value && <span class="text-4 trim">{contact.value}</span>}
+  {
+    contact.qr && (
+      <span class="qr">
+        <Image src={contact.qr.src} alt="QR-код" width={390} style={`object-fit: ${contact.qr.fit}`} />
+      </span>
+    )
+  }
+</a>
+
+<style>
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 30px 30px 20px;
+    border-radius: var(--radius-md);
+    background: var(--color-violet);
+    color: var(--color-white);
+  }
+
+  .contact-card span {
+    display: block;
+  }
+
+  .with-qr {
+    gap: 10px;
+    height: 260px;
+    padding-bottom: 30px;
+  }
+
+  .qr {
+    position: relative;
+    width: 195px;
+    aspect-ratio: 195 / 165;
+  }
+
+  .qr img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-position: bottom;
+    mix-blend-mode: screen;
+  }
+</style>

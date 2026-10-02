@@ -1,0 +1,139 @@
+---
+import AiTool from '../components/AiTool.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import SkillTags from '../components/SkillTags.astro';
+import ToolRing from '../components/ToolRing.astro';
+import {
+  generativeModels,
+  languageModels,
+  mainTools,
+  softSkills,
+  softSkillsNote,
+  uxuiSkills,
+  workflowTools,
+} from '../data/skills';
+---
+
+<section class="skills container" id="skills">
+  <h2 class="h1 trim">Навыки</h2>
+
+  <div class="block tools">
+    <SectionHeading>Основные инструменты</SectionHeading>
+    <ul class="tool-grid">
+      {mainTools.map((tool) => <ToolRing tool={tool} />)}
+    </ul>
+  </div>
+
+  <div class="block ai">
+    <SectionHeading>AI</SectionHeading>
+    <div class="ai-groups">
+      <div class="group">
+        <h4 class="group-title h4">Языковые модели</h4>
+        <ul class="ai-tools">
+          {languageModels.map((model) => <AiTool name={model.name} icon={model.icon} />)}
+        </ul>
+      </div>
+      <div class="group">
+        <h4 class="group-title h4">Генеративные модели</h4>
+        <SkillTags tags={generativeModels} />
+      </div>
+      <div class="group">
+        <h4 class="group-title h4">Внедрение в workflow</h4>
+        <SkillTags tags={workflowTools} />
+      </div>
+    </div>
+  </div>
+
+  <div class="block uxui">
+    <SectionHeading variant="violet">UX/UI</SectionHeading>
+    <ul class="list text-list trim">
+      {uxuiSkills.map((skill) => <li>{skill}</li>)}
+    </ul>
+  </div>
+
+  <div class="block soft">
+    <SectionHeading variant="violet">Soft Skills</SectionHeading>
+    <ul class="list text-list trim">
+      {softSkills.map((skill) => <li>{skill}</li>)}
+    </ul>
+    <p class="note text-1 trim">{softSkillsNote}</p>
+  </div>
+</section>
+
+<style>
+  .skills {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .tools {
+    margin-top: 36px;
+  }
+
+  .ai {
+    gap: 40px;
+    margin-top: 50px;
+  }
+
+  .uxui,
+  .soft {
+    margin-top: 40px;
+  }
+
+  .soft {
+    gap: 18px;
+  }
+
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 164px));
+    gap: 22px 26px;
+  }
+
+  .ai-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .group-title,
+  .list,
+  .note {
+    color: var(--color-gray);
+  }
+
+  .ai-tools {
+    display: grid;
+    grid-template-columns: repeat(2, 112px);
+    gap: 24px;
+  }
+
+  .list,
+  .note {
+    max-width: 350px;
+  }
+
+  .list {
+    list-style: disc;
+  }
+
+  .list li {
+    margin-left: 24px;
+  }
+
+  .list li + li {
+    margin-top: 7px;
+  }
+</style>

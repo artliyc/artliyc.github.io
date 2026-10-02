@@ -23,7 +23,8 @@
 
 /* Type styles. Figma letter spacing is in percent, so it maps to em. */
 .h1 {
-  font: 700 50px/0.9 var(--font-heading);
+  /* 50px at the 402px frame; shrinks on narrower phones so long titles fit one line. */
+  font: 700 min(50px, (100vw - 30px) * 0.1344) / 0.9 var(--font-heading);
   letter-spacing: -0.03em;
   text-transform: uppercase;
 }

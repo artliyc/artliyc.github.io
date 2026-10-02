@@ -1,0 +1,32 @@
+---
+interface Props {
+  variant?: 'yellow' | 'violet';
+}
+
+const { variant = 'yellow' } = Astro.props;
+---
+
+<h3 class:list={['section-heading', variant]}>
+  <span class="h3 trim"><slot /></span>
+</h3>
+
+<style>
+  .section-heading {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding-left: 16px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+
+  .yellow {
+    background: var(--color-yellow);
+    color: var(--color-gray);
+  }
+
+  .violet {
+    background: var(--color-violet);
+    color: var(--color-white);
+  }
+</style>

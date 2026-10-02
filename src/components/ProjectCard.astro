@@ -1,0 +1,102 @@
+---
+import { Image } from 'astro:assets';
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { crop } = project;
+const cropStyle = crop
+  ? `top: ${crop.top}%; left: ${crop.left}%; width: ${crop.width}%; height: ${crop.height}%`
+  : undefined;
+---
+
+<a class="project-card" href={`/projects/${project.slug}/`}>
+  <div class:list={['thumbnail', { cropped: crop }]}>
+    <Image
+      src={project.thumbnail}
+      alt=""
+      width={Math.round((660 * (crop?.width ?? 100)) / 100)}
+      style={cropStyle}
+    />
+  </div>
+  <div class="text">
+    <h3 class="h4">{project.title}</h3>
+    <div class="description text-1 trim">
+      {project.description.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </div>
+  <ul class="tags">
+    {
+      project.tags.map((tag) => (
+        <li class="tag button-2">
+          <span class="trim">{tag}</span>
+        </li>
+      ))
+    }
+  </ul>
+</a>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: var(--radius-md);
+    background: var(--color-light-gray);
+  }
+
+  .thumbnail {
+    position: relative;
+    aspect-ratio: 330 / 260;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    background: var(--color-dark-gray);
+  }
+
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .thumbnail.cropped img {
+    position: absolute;
+    max-width: none;
+    object-fit: fill;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .description {
+    color: var(--color-gray);
+  }
+
+  .description p + p {
+    margin-top: 15px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    display: flex;
+    align-items: center;
+    height: 28px;
+    padding-inline: 16px;
+    border-radius: var(--radius-sm);
+    background: var(--color-violet);
+    color: var(--color-white);
+    white-space: nowrap;
+  }
+</style>

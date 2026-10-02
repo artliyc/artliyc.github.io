@@ -1,0 +1,21 @@
+---
+import checkCircle from '../assets/icons/check-circle.svg';
+---
+
+<li class="platform-button">
+  <img src={checkCircle.src} alt="" width="36" height="36" />
+  <span class="button-1 trim"><slot /></span>
+</li>
+
+<style>
+  .platform-button {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    padding: 12px 11px 12px 36px;
+    border-radius: var(--radius-lg);
+    background: var(--color-black);
+    color: var(--color-yellow);
+    white-space: nowrap;
+  }
+</style>

@@ -70,6 +70,11 @@ ol {
   padding-inline: var(--gutter);
 }
 
+/* Anchored sections stop with the same 36px gap under the header as the first one. */
+section[id] {
+  scroll-margin-top: 36px;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

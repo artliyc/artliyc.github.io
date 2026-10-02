@@ -1,0 +1,31 @@
+---
+import TestimonialCard from '../components/TestimonialCard.astro';
+import { testimonials } from '../data/testimonials';
+---
+
+<section class="testimonials container" id="testimonials">
+  <h2 class="h1 trim">Отзывы</h2>
+  <ul class="list">
+    {
+      testimonials.map((testimonial) => (
+        <li>
+          <TestimonialCard testimonial={testimonial} />
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .testimonials {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+</style>

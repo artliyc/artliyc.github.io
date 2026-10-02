@@ -1,0 +1,31 @@
+---
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../data/projects';
+---
+
+<section class="projects container" id="projects">
+  <h2 class="h1 trim">Мои проекты</h2>
+  <ul class="list">
+    {
+      projects.map((project) => (
+        <li>
+          <ProjectCard project={project} />
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+</style>

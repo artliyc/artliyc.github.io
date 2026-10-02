@@ -1,0 +1,49 @@
+---
+// Black skill tags laid out two per row, as in the mockup.
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+const rows: string[][] = [];
+for (let i = 0; i < tags.length; i += 2) rows.push(tags.slice(i, i + 2));
+---
+
+<ul class="skill-tags">
+  {
+    rows.map((row) => (
+      <li>
+        <ul class="row">
+          {row.map((tag) => (
+            <li class="tag button-2">
+              <span class="trim">{tag}</span>
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .skill-tags,
+  .row {
+    display: flex;
+    gap: 14px;
+  }
+
+  .skill-tags {
+    flex-direction: column;
+  }
+
+  .tag {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding-inline: 20px;
+    border-radius: var(--radius-sm);
+    background: var(--color-black);
+    color: var(--color-white);
+    white-space: nowrap;
+  }
+</style>

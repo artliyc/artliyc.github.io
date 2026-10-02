@@ -1,0 +1,57 @@
+---
+import PlatformButton from '../components/PlatformButton.astro';
+
+const platforms = ['Mobile Apps', 'Games', 'Saas'];
+---
+
+<section class="intro container" id="about">
+  <div class="heading">
+    <h1 class="h1 trim">Приветствую!</h1>
+    <p class="subtitle h2 trim">Меня зовут Ирина</p>
+  </div>
+  <div class="description text-1 trim">
+    <p>
+      Я UX/UI дизайнер, который превращает сложные продукты в понятный и увлекательный пользовательский опыт.
+    </p>
+    <p>
+      Работаю на стыке геймдизайна и продуктового подхода: проектирую интерфейсы для игр, мобильных приложений и
+      SaaS-сервисов, где важны не только удобство, но и вовлеченность.
+    </p>
+    <p>
+      Особое внимание уделяю геймификации — внедряю игровые механики в неигровые продукты, чтобы усиливать интерес,
+      удержание и эмоциональную связь с пользователем.
+    </p>
+  </div>
+  <ul class="platforms">
+    {platforms.map((platform) => <PlatformButton>{platform}</PlatformButton>)}
+  </ul>
+</section>
+
+<style>
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .heading {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .subtitle,
+  .description {
+    color: var(--color-gray);
+  }
+
+  .description p + p {
+    margin-top: 15px;
+  }
+
+  .platforms {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+</style>

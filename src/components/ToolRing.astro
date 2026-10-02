@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets';
+import type { Tool } from '../data/skills';
+
+interface Props {
+  tool: Tool;
+}
+
+const { tool } = Astro.props;
+// The black disc is 129.49px inside a 164px ring; icon sizes are relative to the disc.
+const DISC = 129.49;
+const iconStyle = [
+  `width: ${((tool.width / DISC) * 100).toFixed(2)}%`,
+  tool.offsetY ? `translate: 0 ${((tool.offsetY / tool.height) * 100).toFixed(2)}%` : '',
+].join(';');
+---
+
+<li class="tool">
+  <div class="ring" style={`--level: ${tool.level}`} role="img" aria-label={`Уровень владения: ${tool.level}%`}>
+    <div class="disc">
+      <Image src={tool.icon} alt="" width={Math.round(tool.width * 2)} style={iconStyle} />
+    </div>
+  </div>
+  <p class="text-2 trim">{tool.name}</p>
+</li>
+
+<style>
+  .tool {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .ring {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: conic-gradient(var(--color-violet) calc(var(--level) * 1%), var(--color-dark-gray) 0);
+  }
+
+  .disc {
+    display: grid;
+    place-items: center;
+    width: 78.95%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color-black);
+  }
+
+  .disc img {
+    height: auto;
+  }
+</style>

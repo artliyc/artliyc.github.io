@@ -1,22 +1,27 @@
 ---
 import Base from '../layouts/Base.astro';
-import { navItems } from '../data/nav';
+import Contacts from '../sections/Contacts.astro';
+import Intro from '../sections/Intro.astro';
+import Projects from '../sections/Projects.astro';
+import Skills from '../sections/Skills.astro';
+import Testimonials from '../sections/Testimonials.astro';
 ---
 
 <Base title="Ирина — UX/UI дизайнер" description="Портфолио UX/UI дизайнера: игры, мобильные приложения и SaaS.">
-  {/* Temporary placeholders so the menu anchors can be checked; replaced by real sections in stage 2. */}
-  {
-    navItems.map((item) => (
-      <section class="placeholder container" id={item.id}>
-        <h2 class="h1">{item.label}</h2>
-      </section>
-    ))
-  }
+  <div class="page">
+    <Intro />
+    <Skills />
+    <Projects />
+    <Testimonials />
+    <Contacts />
+  </div>
 </Base>
 
 <style>
-  .placeholder {
-    min-height: 80vh;
-    padding-top: 36px;
+  .page {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    padding-block: 36px;
   }
 </style>
