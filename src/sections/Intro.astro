@@ -2,11 +2,12 @@
 import PlatformButton from '../components/PlatformButton.astro';
 import SocialPill from '../components/SocialPill.astro';
 import { socials } from '../data/socials';
+import { url } from '../utils/url';
 
 const platforms = [
-  { label: 'Mobile Apps', href: '/projects/marketplace-mvp/' },
-  { label: 'Games', href: '/#projects' },
-  { label: 'Saas', href: '/projects/redoc/' },
+  { label: 'Mobile Apps', href: url('/projects/marketplace-mvp/') },
+  { label: 'Games', href: url('/#projects') },
+  { label: 'Saas', href: url('/projects/redoc/') },
 ];
 
 const socialLabels = { behance: 'Behance', linkedin: 'LinkedIn', telegram: 'Telegram' };

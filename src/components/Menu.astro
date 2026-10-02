@@ -3,6 +3,7 @@ import LanguageSwitch from './LanguageSwitch.astro';
 import NavItem from './NavItem.astro';
 import { navItems } from '../data/nav';
 import closeIcon from '../assets/icons/close.svg';
+import { url } from '../utils/url';
 
 interface Props {
   active?: string;
@@ -22,7 +23,7 @@ const { active } = Astro.props;
           navItems.map((item) => (
             <li>
               <NavItem
-                href={`/#${item.id}`}
+                href={url(`/#${item.id}`)}
                 data-nav={item.id}
                 aria-current={item.id === active ? 'true' : undefined}
               >

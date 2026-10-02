@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { Project } from '../data/projects';
+import { url } from '../utils/url';
 
 interface Props {
   project: Project;
@@ -15,7 +16,7 @@ const cropStyle = crop
 const displayWidth = Math.round((330 * (crop?.width ?? 100)) / 100);
 ---
 
-<a class="project-card" href={`/projects/${project.slug}/`}>
+<a class="project-card" href={url(`/projects/${project.slug}/`)}>
   <div class:list={['thumbnail', { cropped: crop }]}>
     <Image
       src={project.thumbnail}

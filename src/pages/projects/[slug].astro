@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import ProjectGallery from '../../components/ProjectGallery.astro';
 import ProjectMeta from '../../components/ProjectMeta.astro';
 import { projects, type Project } from '../../data/projects';
+import { url } from '../../utils/url';
 
 export function getStaticPaths() {
   return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
@@ -19,7 +20,7 @@ const title = project.pageTitle ?? project.title;
 
 <Base title={`${title} — Ирина, UX/UI дизайнер`} description={project.meta.about} activeNav="projects">
   <article class="project container">
-    <a class="back h6 trim" href="/#projects">← Назад</a>
+    <a class="back h6 trim" href={url('/#projects')}>← Назад</a>
 
     <div class="top">
       <header class="heading">

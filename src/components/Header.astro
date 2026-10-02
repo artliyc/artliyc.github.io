@@ -4,6 +4,7 @@ import NavItem from './NavItem.astro';
 import SocialLink from './SocialLink.astro';
 import { navItems } from '../data/nav';
 import { socials } from '../data/socials';
+import { url } from '../utils/url';
 
 interface Props {
   /** Navigation item highlighted on pages that have no anchored sections. */
@@ -31,7 +32,7 @@ const { active } = Astro.props;
             <li>
               <a
                 class="nav-link"
-                href={`/#${item.id}`}
+                href={url(`/#${item.id}`)}
                 data-nav={item.id}
                 aria-current={item.id === active ? 'true' : undefined}
               >
