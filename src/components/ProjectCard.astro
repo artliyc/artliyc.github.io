@@ -104,4 +104,64 @@ const displayWidth = Math.round((330 * (crop?.width ?? 100)) / 100);
     color: var(--color-white);
     white-space: nowrap;
   }
+
+  /* Desktop: thumbnail and text side by side, tags pinned to the bottom. */
+  @media (min-width: 1024px) {
+    .project-card {
+      display: grid;
+      grid-template-columns: repeat(2, calc(372 * var(--u)));
+      grid-template-rows: 1fr auto;
+      justify-content: space-between;
+      gap: calc(20 * var(--u));
+      width: 100%;
+      min-height: calc(450 * var(--u));
+      padding: calc(20 * var(--u));
+      border-radius: calc(20 * var(--u));
+    }
+
+    .thumbnail {
+      align-self: start;
+      aspect-ratio: 372 / 293;
+      border-radius: calc(10 * var(--u));
+    }
+
+    .text {
+      gap: calc(20 * var(--u));
+    }
+
+    /* Desktop/Headline 5 */
+    .text h3 {
+      font: 600 calc(38 * var(--u)) / 1 var(--font-heading);
+      letter-spacing: -0.01em;
+      text-box: trim-both cap alphabetic;
+    }
+
+    /* Desktop/Text 3 */
+    .description {
+      font-size: calc(20 * var(--u));
+      line-height: calc(24 * var(--u));
+      letter-spacing: -0.03em;
+    }
+
+    .description p + p {
+      margin-top: calc(10 * var(--u));
+    }
+
+    .tags {
+      grid-column: 1 / -1;
+      gap: calc(8 * var(--u));
+    }
+
+    /* Desktop/Tag 1 */
+    .tag {
+      height: auto;
+      padding: calc(4 * var(--u)) calc(16 * var(--u));
+      border-radius: calc(10 * var(--u));
+      font: 500 calc(20 * var(--u)) / 1.3 var(--font-text);
+    }
+
+    .tag .trim {
+      text-box: normal;
+    }
+  }
 </style>

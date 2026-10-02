@@ -40,4 +40,29 @@ const { name, icon } = Astro.props;
     height: 57.49px;
     object-fit: cover;
   }
+
+  @media (min-width: 1024px) {
+    .ai-tool {
+      gap: calc(12 * var(--u));
+      width: calc(112 * var(--u));
+    }
+
+    .tile {
+      width: calc(112 * var(--u));
+      height: calc(112 * var(--u));
+      padding: calc(27.63 * var(--u)) 0 0 calc(29.12 * var(--u));
+      border-radius: calc(22.4 * var(--u));
+    }
+
+    .tile img {
+      width: calc(57.49 * var(--u));
+      height: calc(57.49 * var(--u));
+    }
+
+    .ai-tool p {
+      font-size: calc(24 * var(--u));
+      line-height: calc(32 * var(--u));
+      letter-spacing: -0.03em;
+    }
+  }
 </style>

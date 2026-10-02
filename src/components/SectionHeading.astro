@@ -29,4 +29,30 @@ const { variant = 'yellow' } = Astro.props;
     background: var(--color-violet);
     color: var(--color-white);
   }
+
+  @media (min-width: 1024px) {
+    .section-heading {
+      height: auto;
+    }
+
+    /* On desktop the yellow chip becomes a plain grey heading (Headline 4). */
+    .yellow {
+      padding: 0;
+      background: none;
+    }
+
+    .yellow .h3 {
+      font: 700 calc(50 * var(--u)) / 0.9 var(--font-heading);
+    }
+
+    .violet {
+      padding: calc(20 * var(--u));
+      border-radius: calc(20 * var(--u));
+    }
+
+    .violet .h3 {
+      font: 600 calc(38 * var(--u)) / 1 var(--font-heading);
+      letter-spacing: -0.01em;
+    }
+  }
 </style>

@@ -80,6 +80,26 @@ section[id] {
   html {
     scroll-padding-top: 0;
   }
+
+  section[id] {
+    scroll-margin-top: 0;
+  }
+
+  /*
+   * Shared frame of a desktop screen on the main page: full width, content
+   * starts 204px below the top (under the floating header), 95px side margin.
+   */
+  .screen {
+    max-width: none;
+    min-height: 100vh;
+    padding: calc(204 * var(--u)) calc(95 * var(--u)) calc(60 * var(--u));
+  }
+
+  /* Desktop/Headline 3 — screen titles. */
+  .screen > .h1 {
+    font: 700 calc(110 * var(--u)) / calc(116 * var(--u)) var(--font-heading);
+    letter-spacing: -0.03em;
+  }
 }
 
 .visually-hidden {

@@ -7,12 +7,21 @@ export interface Contact {
   title: string[];
   href: string;
   value?: string;
-  qr?: { src: ImageMetadata; fit: 'fill' | 'contain' };
+  qr?: {
+    src: ImageMetadata;
+    fit: 'fill' | 'contain';
+    /**
+     * Width of the QR box on desktop, in px of the 1920 frame (214 by default).
+     * The Behance source image is narrower than a square, so its box is widened
+     * to keep the code square.
+     */
+    desktopWidth?: number;
+  };
 }
 
 export const contacts: Contact[] = [
   { title: ['Электронная', 'почта'], value: 'artliyc@gmail.com', href: 'mailto:artliyc@gmail.com' },
-  { title: ['Behance'], href: 'https://www.behance.net/artliyc', qr: { src: behanceQr, fit: 'fill' } },
+  { title: ['Behance'], href: 'https://www.behance.net/artliyc', qr: { src: behanceQr, fit: 'fill', desktopWidth: 250 } },
   { title: ['Телефон'], value: '+381617305766', href: 'tel:+381617305766' },
   {
     title: ['LinkedIn'],

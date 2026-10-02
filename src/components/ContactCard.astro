@@ -29,7 +29,7 @@ const external = contact.href.startsWith('http');
   {contact.value && <span class="text-4 trim">{contact.value}</span>}
   {
     contact.qr && (
-      <span class="qr">
+      <span class="qr" style={`--qr-width: ${contact.qr.desktopWidth ?? 214}`}>
         <Image src={contact.qr.src} alt="QR-код" width={585} quality={92} style={`object-fit: ${contact.qr.fit}`} />
       </span>
     )
@@ -71,5 +71,42 @@ const external = contact.href.startsWith('http');
     height: 100%;
     object-position: bottom;
     mix-blend-mode: screen;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-card {
+      position: relative;
+      gap: calc(25 * var(--u));
+      width: 100%;
+      height: auto;
+      padding: calc(30 * var(--u)) calc(30 * var(--u)) calc(20 * var(--u));
+      border-radius: calc(20 * var(--u));
+    }
+
+    .with-qr {
+      padding-bottom: calc(20 * var(--u));
+    }
+
+    /* Desktop/Headline 5 */
+    .contact-card .h3 {
+      font: 600 calc(38 * var(--u)) / 1 var(--font-heading);
+      letter-spacing: -0.01em;
+    }
+
+    /* Desktop/Text 1 */
+    .contact-card .text-4 {
+      font-size: calc(28 * var(--u));
+      line-height: calc(36 * var(--u));
+    }
+
+    .qr {
+      position: absolute;
+      /* 214px tall, centred on the card (350px wide). */
+      top: calc(89 * var(--u));
+      left: calc((350 - var(--qr-width)) / 2 * var(--u));
+      width: calc(var(--qr-width) * var(--u));
+      height: calc(214 * var(--u));
+      aspect-ratio: auto;
+    }
   }
 </style>

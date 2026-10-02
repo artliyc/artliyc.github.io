@@ -46,4 +46,25 @@ for (let i = 0; i < tags.length; i += 2) rows.push(tags.slice(i, i + 2));
     color: var(--color-white);
     white-space: nowrap;
   }
+
+  /* Desktop: all tags in one row. */
+  @media (min-width: 1024px) {
+    .skill-tags {
+      flex-flow: row wrap;
+      gap: calc(20 * var(--u));
+    }
+
+    .skill-tags > li,
+    .row {
+      display: contents;
+    }
+
+    .tag {
+      height: calc(60 * var(--u));
+      padding-inline: calc(20 * var(--u));
+      border-radius: calc(20 * var(--u));
+      font: 400 calc(24 * var(--u)) / calc(32 * var(--u)) var(--font-text);
+      letter-spacing: -0.03em;
+    }
+  }
 </style>

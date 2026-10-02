@@ -14,49 +14,56 @@ import {
 } from '../data/skills';
 ---
 
-<section class="skills container" id="skills">
+<section class="skills container screen" id="skills">
   <h2 class="h1 trim">Навыки</h2>
 
-  <div class="block tools">
-    <SectionHeading>Основные инструменты</SectionHeading>
-    <ul class="tool-grid">
-      {mainTools.map((tool) => <ToolRing tool={tool} />)}
-    </ul>
-  </div>
-
-  <div class="block ai">
-    <SectionHeading>AI</SectionHeading>
-    <div class="ai-groups">
-      <div class="group">
-        <h4 class="group-title h4">Языковые модели</h4>
-        <ul class="ai-tools">
-          {languageModels.map((model) => <AiTool name={model.name} icon={model.icon} />)}
+  {/* Two columns on desktop; on mobile the wrappers dissolve into one stack. */}
+  <div class="columns">
+    <div class="column">
+      <div class="block tools">
+        <SectionHeading>Основные инструменты</SectionHeading>
+        <ul class="tool-grid">
+          {mainTools.map((tool) => <ToolRing tool={tool} />)}
         </ul>
       </div>
-      <div class="group">
-        <h4 class="group-title h4">Генеративные модели</h4>
-        <SkillTags tags={generativeModels} />
-      </div>
-      <div class="group">
-        <h4 class="group-title h4">Внедрение в workflow</h4>
-        <SkillTags tags={workflowTools} />
+
+      <div class="block ai">
+        <SectionHeading>AI</SectionHeading>
+        <div class="ai-groups">
+          <div class="group">
+            <h4 class="group-title h4">Языковые модели</h4>
+            <ul class="ai-tools">
+              {languageModels.map((model) => <AiTool name={model.name} icon={model.icon} />)}
+            </ul>
+          </div>
+          <div class="group">
+            <h4 class="group-title h4">Генеративные модели</h4>
+            <SkillTags tags={generativeModels} />
+          </div>
+          <div class="group">
+            <h4 class="group-title h4">Внедрение в workflow</h4>
+            <SkillTags tags={workflowTools} />
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="block uxui">
-    <SectionHeading variant="violet">UX/UI</SectionHeading>
-    <ul class="list text-list trim">
-      {uxuiSkills.map((skill) => <li>{skill}</li>)}
-    </ul>
-  </div>
+    <div class="column">
+      <div class="block uxui">
+        <SectionHeading variant="violet">UX/UI</SectionHeading>
+        <ul class="list text-list trim">
+          {uxuiSkills.map((skill) => <li>{skill}</li>)}
+        </ul>
+      </div>
 
-  <div class="block soft">
-    <SectionHeading variant="violet">Soft Skills</SectionHeading>
-    <ul class="list text-list trim">
-      {softSkills.map((skill) => <li>{skill}</li>)}
-    </ul>
-    <p class="note text-1 trim">{softSkillsNote}</p>
+      <div class="block soft">
+        <SectionHeading variant="violet">Soft Skills</SectionHeading>
+        <ul class="list text-list trim">
+          {softSkills.map((skill) => <li>{skill}</li>)}
+        </ul>
+        <p class="note text-1 trim">{softSkillsNote}</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -64,6 +71,11 @@ import {
   .skills {
     display: flex;
     flex-direction: column;
+  }
+
+  .columns,
+  .column {
+    display: contents;
   }
 
   .block {
@@ -135,5 +147,104 @@ import {
 
   .list li + li {
     margin-top: 7px;
+  }
+
+  @media (min-width: 1024px) {
+    .columns {
+      display: flex;
+      gap: calc(110 * var(--u));
+      margin-top: calc(50 * var(--u));
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: calc(50 * var(--u));
+    }
+
+    .column:first-child {
+      width: calc(900 * var(--u));
+    }
+
+    .column:last-child {
+      width: calc(725 * var(--u));
+    }
+
+    .block {
+      gap: calc(35 * var(--u));
+      margin-top: 0;
+    }
+
+    .uxui {
+      gap: calc(25 * var(--u));
+    }
+
+    .soft {
+      gap: calc(30 * var(--u));
+    }
+
+    .tool-grid,
+    .ai-tools {
+      display: flex;
+      gap: calc(20 * var(--u));
+    }
+
+    .ai-groups {
+      gap: calc(40 * var(--u));
+    }
+
+    .group {
+      gap: calc(20 * var(--u));
+    }
+
+    /* Desktop/Headline 5 */
+    .group-title {
+      font: 600 calc(38 * var(--u)) / 1 var(--font-heading);
+      letter-spacing: -0.01em;
+      text-box: trim-both cap alphabetic;
+    }
+
+    .list,
+    .note {
+      max-width: none;
+      font-size: calc(24 * var(--u));
+      letter-spacing: -0.03em;
+    }
+
+    .list {
+      line-height: 1.3;
+    }
+
+    .list li {
+      margin-left: calc(36 * var(--u));
+    }
+
+    .list li + li {
+      margin-top: calc(10 * var(--u));
+    }
+
+    /* UX/UI list: two columns of four. */
+    .uxui .list {
+      columns: 2;
+      column-gap: calc(25 * var(--u));
+    }
+
+    .uxui .list li {
+      break-inside: avoid;
+    }
+
+    .uxui .list li:nth-child(5) {
+      margin-top: 0;
+      break-before: column;
+    }
+
+    .soft .list {
+      width: calc(583 * var(--u));
+    }
+
+    .note {
+      margin-top: calc(20 * var(--u));
+      line-height: calc(32 * var(--u));
+    }
   }
 </style>

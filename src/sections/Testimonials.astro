@@ -3,7 +3,7 @@ import TestimonialCard from '../components/TestimonialCard.astro';
 import { testimonials } from '../data/testimonials';
 ---
 
-<section class="testimonials container" id="testimonials">
+<section class="testimonials container screen" id="testimonials">
   <h2 class="h1 trim">Отзывы</h2>
   <ul class="list">
     {
@@ -27,5 +27,16 @@ import { testimonials } from '../data/testimonials';
     display: flex;
     flex-direction: column;
     gap: 30px;
+  }
+
+  @media (min-width: 1024px) {
+    .testimonials {
+      gap: calc(78 * var(--u));
+      padding-right: calc(200 * var(--u));
+    }
+
+    .list {
+      gap: calc(30 * var(--u));
+    }
   }
 </style>

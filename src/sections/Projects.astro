@@ -3,7 +3,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { projects } from '../data/projects';
 ---
 
-<section class="projects container" id="projects">
+<section class="projects container screen" id="projects">
   <h2 class="h1 trim">Мои проекты</h2>
   <ul class="list">
     {
@@ -27,5 +27,21 @@ import { projects } from '../data/projects';
     display: flex;
     flex-direction: column;
     gap: 30px;
+  }
+
+  @media (min-width: 1024px) {
+    .projects {
+      gap: calc(50 * var(--u));
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: repeat(2, calc(804 * var(--u)));
+      gap: calc(40 * var(--u));
+    }
+
+    .list li {
+      display: flex;
+    }
   }
 </style>

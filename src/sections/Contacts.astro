@@ -3,7 +3,7 @@ import ContactCard from '../components/ContactCard.astro';
 import { contacts } from '../data/contacts';
 ---
 
-<section class="contacts container" id="contacts">
+<section class="contacts container screen" id="contacts">
   <h2 class="h1 trim">Всегда на связи</h2>
   <ul class="list">
     {
@@ -31,5 +31,44 @@ import { contacts } from '../data/contacts';
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+
+  /* Desktop: staggered 4×2 grid of square cards, as in the mockup. */
+  @media (min-width: 1024px) {
+    .contacts {
+      gap: calc(78 * var(--u));
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: repeat(4, calc(350 * var(--u)));
+      grid-auto-rows: calc(350 * var(--u));
+      gap: calc(20 * var(--u));
+    }
+
+    .list li {
+      display: flex;
+    }
+
+    /* Email, Behance, Phone on the first row; Telegram, LinkedIn on the second. */
+    .list li:nth-child(1) {
+      grid-area: 1 / 1;
+    }
+
+    .list li:nth-child(2) {
+      grid-area: 1 / 2;
+    }
+
+    .list li:nth-child(3) {
+      grid-area: 1 / 4;
+    }
+
+    .list li:nth-child(4) {
+      grid-area: 2 / 3;
+    }
+
+    .list li:nth-child(5) {
+      grid-area: 2 / 2;
+    }
   }
 </style>
