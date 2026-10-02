@@ -3,6 +3,12 @@ import LanguageSwitch from './LanguageSwitch.astro';
 import NavItem from './NavItem.astro';
 import { navItems } from '../data/nav';
 import closeIcon from '../assets/icons/close.svg';
+
+interface Props {
+  active?: string;
+}
+
+const { active } = Astro.props;
 ---
 
 <dialog class="menu" id="menu" aria-label="Меню">
@@ -15,7 +21,11 @@ import closeIcon from '../assets/icons/close.svg';
         {
           navItems.map((item) => (
             <li>
-              <NavItem href={`/#${item.id}`} data-nav={item.id}>
+              <NavItem
+                href={`/#${item.id}`}
+                data-nav={item.id}
+                aria-current={item.id === active ? 'true' : undefined}
+              >
                 {item.label}
               </NavItem>
             </li>

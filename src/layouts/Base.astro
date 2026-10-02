@@ -9,9 +9,11 @@ import Menu from '../components/Menu.astro';
 interface Props {
   title: string;
   description?: string;
+  /** Menu item highlighted on pages that have no anchored sections. */
+  activeNav?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, activeNav } = Astro.props;
 ---
 
 <!doctype html>
@@ -24,7 +26,7 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <Header />
-    <Menu />
+    <Menu active={activeNav} />
     <main>
       <slot />
     </main>

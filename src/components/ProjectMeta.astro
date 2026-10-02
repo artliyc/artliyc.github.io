@@ -1,0 +1,53 @@
+---
+interface Props {
+  tags: string;
+  about: string;
+}
+
+const { tags, about } = Astro.props;
+---
+
+<dl class="project-meta">
+  <div class="row">
+    <dt class="h6 trim">Теги</dt>
+    <dd class="text-3 trim">{tags}</dd>
+  </div>
+  <div class="row">
+    <dt class="h6 trim">О проекте</dt>
+    <dd class="text-3 trim">{about}</dd>
+  </div>
+</dl>
+
+<style>
+  .project-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    background: var(--color-violet);
+    overflow-wrap: anywhere;
+  }
+
+  .row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .row + .row {
+    gap: 10px;
+  }
+
+  dt {
+    flex-shrink: 0;
+    color: var(--color-white);
+    white-space: nowrap;
+  }
+
+  dd {
+    flex: 1;
+    min-width: 0;
+    color: rgb(255 255 255 / 0.6);
+  }
+</style>

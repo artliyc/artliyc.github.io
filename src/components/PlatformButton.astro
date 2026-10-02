@@ -1,10 +1,18 @@
 ---
 import checkCircle from '../assets/icons/check-circle.svg';
+
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
 ---
 
-<li class="platform-button">
-  <img src={checkCircle.src} alt="" width="36" height="36" />
-  <span class="button-1 trim"><slot /></span>
+<li>
+  <a class="platform-button" href={href}>
+    <img src={checkCircle.src} alt="" width="36" height="36" />
+    <span class="button-1 trim"><slot /></span>
+  </a>
 </li>
 
 <style>

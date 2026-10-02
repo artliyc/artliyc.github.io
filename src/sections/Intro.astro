@@ -1,7 +1,11 @@
 ---
 import PlatformButton from '../components/PlatformButton.astro';
 
-const platforms = ['Mobile Apps', 'Games', 'Saas'];
+const platforms = [
+  { label: 'Mobile Apps', href: '/projects/marketplace-mvp/' },
+  { label: 'Games', href: '/#projects' },
+  { label: 'Saas', href: '/projects/redoc/' },
+];
 ---
 
 <section class="intro container" id="about">
@@ -23,7 +27,7 @@ const platforms = ['Mobile Apps', 'Games', 'Saas'];
     </p>
   </div>
   <ul class="platforms">
-    {platforms.map((platform) => <PlatformButton>{platform}</PlatformButton>)}
+    {platforms.map((platform) => <PlatformButton href={platform.href}>{platform.label}</PlatformButton>)}
   </ul>
 </section>
 

@@ -1,0 +1,144 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import ProjectGallery from '../../components/ProjectGallery.astro';
+import ProjectMeta from '../../components/ProjectMeta.astro';
+import { projects, type Project } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const title = project.pageTitle ?? project.title;
+---
+
+<Base title={`${title} — Ирина, UX/UI дизайнер`} description={project.meta.about} activeNav="projects">
+  <article class="project container">
+    <header class="heading">
+      <h1 class="h1 trim">{title}</h1>
+      {project.company && <p class="company h3 trim">{project.company}</p>}
+    </header>
+
+    <ProjectMeta tags={project.meta.tags} about={project.meta.about} />
+
+    <div class="body">
+      {
+        project.sections.map((section) => (
+          <section class="text-section">
+            <h2 class="h4">{section.title}</h2>
+            <div class="content trim">
+              {section.blocks.map((block) =>
+                'list' in block ? (
+                  <ul class="text-list">
+                    {block.list.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div class="paragraphs text-1">
+                    {block.paragraphs.map((paragraph) => (
+                      <p>{paragraph}</p>
+                    ))}
+                  </div>
+                ),
+              )}
+            </div>
+          </section>
+        ))
+      }
+
+      {project.gallery.map((items) => <ProjectGallery items={items} />)}
+
+      {
+        project.link && (
+          <div class="project-link">
+            <a class="h6 trim" href={project.link.href} target="_blank" rel="noopener noreferrer">
+              {project.link.label}
+            </a>
+            {project.link.qr && <Image src={project.link.qr} alt="QR-код" width={448} />}
+          </div>
+        )
+      }
+    </div>
+  </article>
+</Base>
+
+<style>
+  .project {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-top: 40px;
+    padding-bottom: 36px;
+  }
+
+  .heading {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .company {
+    color: rgb(0 0 0 / 0.5);
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .text-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Kept as a plain block so the text trim reaches the first and last lines inside. */
+  .content {
+    color: var(--color-gray);
+  }
+
+  .content > * + * {
+    margin-top: 10px;
+  }
+
+  .content ul {
+    list-style: disc;
+  }
+
+  .content li {
+    margin-left: 24px;
+  }
+
+  .content li + li {
+    margin-top: 7px;
+  }
+
+  .paragraphs p + p {
+    margin-top: 15px;
+  }
+
+  .project-link {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 224px;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .project-link a {
+    color: var(--color-violet);
+  }
+
+  .project-link img {
+    width: 100%;
+    height: auto;
+  }
+</style>
